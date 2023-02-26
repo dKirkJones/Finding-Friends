@@ -19,14 +19,12 @@ class ContactsListAdapter(
 
     inner class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var firstName: TextView
-        var lastName: TextView
-        var address: TextView
+        var phoneNumber: TextView
         var contactImage: ImageView
 
         init {
-            firstName = itemView.findViewById(R.id.tvFirstName)
-            lastName = itemView.findViewById(R.id.tvLastName)
-            address = itemView.findViewById(R.id.tvAddress)
+            firstName = itemView.findViewById(R.id.tvDisplayName)
+            phoneNumber = itemView.findViewById(R.id.tvPhoneNumber)
             contactImage = itemView.findViewById(R.id.contactImage)
         }
     }
@@ -38,9 +36,7 @@ class ContactsListAdapter(
     }
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
-        holder.firstName.text = contactList[position].firstName
-        holder.lastName.text = contactList[position].lastName
-        holder.address.text = contactList[position].address
+
         holder.itemView.setOnClickListener {
             itemClickListener.onItemClick(contactList[position])
         }

@@ -8,21 +8,18 @@ import android.provider.ContactsContract
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.findingfriends.R
-import com.example.findingfriends.adapter.ContactsListAdapter
 import com.example.findingfriends.adapter.RCVAdapter
-import com.example.findingfriends.data.Contact
 import com.example.findingfriends.data.ContactModel
 import com.example.findingfriends.databinding.ActivityContactListBinding
 import com.example.findingfriends.utils.PermissionTracking
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
 
-class ContactListActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks, ContactsListAdapter.OnItemClickListener {
+class ContactListActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks, RCVAdapter.OnItemClickListener {
    private lateinit var binding: ActivityContactListBinding
    var arrayList: ArrayList<ContactModel> = arrayListOf()
-    var rcvAdapter: RCVAdapter = RCVAdapter(arrayList)
-   // var contactListAdapter: ContactsListAdapter = ContactsListAdapter(arrayList)
+   var rcvAdapter: RCVAdapter = RCVAdapter(arrayList, this)
+   // private lateinit var rcvAdapter: RCVAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,13 +32,12 @@ class ContactListActivity : AppCompatActivity(), EasyPermissions.PermissionCallb
             binding.apply {
                 rcvContact.apply {
                     layoutManager = LinearLayoutManager(this@ContactListActivity)
-                 adapter = RCVAdapter(arrayList)
+
+                 adapter = RCVAdapter(arrayList, this@ContactListActivity)
                 }
             }
             getContact()
         }
-
-
     }
 
 
@@ -96,7 +92,7 @@ class ContactListActivity : AppCompatActivity(), EasyPermissions.PermissionCallb
         }
     }
 
-    override fun onItemClick(position: Contact) {
+    override fun onItemClick(position: ContactModel) {
         val intent = Intent(this@ContactListActivity, ContactDetailsActivity::class.java)
         startActivity(intent)
     }

@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvFirstName"
+            android:id="@+id/tvDisplayName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -33,17 +33,6 @@
             app:layout_constraintStart_toEndOf="@+id/contactImage"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvLastName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="8dp"
-            android:text="Smith"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/tvFirstName"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvPhoneNumber"
@@ -55,7 +44,7 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/contactImage"
-            app:layout_constraintTop_toBottomOf="@+id/tvFirstName" />
+            app:layout_constraintTop_toBottomOf="@+id/tvDisplayName" />
 
 
         <TextView
@@ -63,12 +52,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="7724 County Road 526, Mansfield, TX 76063"
+            android:text=""
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/contactImage"
-            app:layout_constraintTop_toBottomOf="@+id/tvFirstName" />
+            app:layout_constraintTop_toBottomOf="@+id/tvDisplayName" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
