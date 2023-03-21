@@ -8,6 +8,7 @@ import android.provider.ContactsContract
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.findingfriends.R
 import com.example.findingfriends.adapter.RCVAdapter
 import com.example.findingfriends.data.ContactModel
 import com.example.findingfriends.databinding.ActivityContactListBinding
@@ -19,7 +20,6 @@ class ContactListActivity : AppCompatActivity(), EasyPermissions.PermissionCallb
    private lateinit var binding: ActivityContactListBinding
    var arrayList: ArrayList<ContactModel> = arrayListOf()
    var rcvAdapter: RCVAdapter = RCVAdapter(arrayList, this)
-   // private lateinit var rcvAdapter: RCVAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +50,7 @@ class ContactListActivity : AppCompatActivity(), EasyPermissions.PermissionCallb
                 arrayOf(
                     ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
                     ContactsContract.CommonDataKinds.Phone.NUMBER,
+                    ContactsContract.CommonDataKinds.Phone.PHOTO_THUMBNAIL_URI
 
                     ),null,null,
                 ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME
@@ -57,7 +58,11 @@ class ContactListActivity : AppCompatActivity(), EasyPermissions.PermissionCallb
         while (cursor!!.moveToNext()){
             val contactName = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
             val contactNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
-            val contactModel =  ContactModel(contactName,contactNumber)
+            var contactPhoto = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_THUMBNAIL_URI))
+            if(contactPhoto == null) {
+                contactPhoto = ""
+            }
+            val contactModel =  ContactModel(contactName,contactNumber, contactPhoto)
             arrayList.add(contactModel)
         }
         rcvAdapter.notifyDataSetChanged()

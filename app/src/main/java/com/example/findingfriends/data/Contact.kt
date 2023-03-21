@@ -12,5 +12,7 @@ data class Contact (
     val note: String = "",
     val email: String = "",
     val zipcode: String="",
-    val image_url: String= ""
+    val displayName:String,
+    val phoneNumber:String,
+    val photoURI: String
 )

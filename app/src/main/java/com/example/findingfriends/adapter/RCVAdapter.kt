@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.findingfriends.data.ContactModel
 
 import com.example.findingfriends.databinding.ItemContactBinding
+import com.squareup.picasso.Picasso
 
 class RCVAdapter (
     val contactList: ArrayList<ContactModel>,
